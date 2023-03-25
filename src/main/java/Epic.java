@@ -1,16 +1,22 @@
 public class Epic extends Task {
-    private String subtask[];
+    private String[] subtasks;
 
-    public Epic(int id, String subtask[]) {
+    public Epic(int id, String[] subtasks) {
         super(id);
-        this.subtask = subtask;
-
-
+        this.subtasks = subtasks;
     }
 
-    ;
+    public String[] getSubtasks() {
+        return subtasks;
+    }
 
-    public String[] getSubtask() {
-        return subtask;
+    @Override
+    public boolean matches(String query) {
+        for (String i : subtasks) {
+            if (i == query) {
+                return true;
+            }
+        }
+        return false;
     }
 }

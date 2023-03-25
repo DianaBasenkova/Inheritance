@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Task {
+public abstract class Task {
     protected int id;
 
     public Task(int id) {
@@ -25,5 +25,10 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+
     }
+    public boolean matches(String query) {
+        return false;
+    }
+
 }

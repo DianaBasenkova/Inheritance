@@ -1,9 +1,14 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+
 public class TodosTest {
     @Test
     public void shouldAddThreeTasksOfDifferentType() {
         SimpleTask simpleTask = new SimpleTask(5, "Позвонить родителям");
 
-        String[] subtasks = { "Молоко", "Яйца", "Хлеб" };
+        String[] subtasks = {"Молоко", "Яйца", "Хлеб"};
         Epic epic = new Epic(55, subtasks);
 
         Meeting meeting = new Meeting(
@@ -19,8 +24,29 @@ public class TodosTest {
         todos.add(epic);
         todos.add(meeting);
 
-        Task[] expected = { simpleTask, epic, meeting };
+        Task[] expected = {simpleTask, epic, meeting};
         Task[] actual = todos.findAll();
         Assertions.assertArrayEquals(expected, actual);
     }
+
+    @Test
+    public void shouldFindMatchesSimpleTask() {
+        //тестируем поиск по запросу если совпадения найдены
+        SimpleTask task = new SimpleTask(1, "query");
+        String query;
+        boolean expected = true;
+        boolean actual = task.matches(???);
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+    @Test
+    public void shouldNotFindMatchesSimpleTask(){
+        //тестируем поиск по запросу если совпадения найдены
+    SimpleTask task = new SimpleTask(1, "other");
+    boolean expected = false;
+    Assertions.assertEquals(expected, task.matches(????);
+
 }
+}
+
