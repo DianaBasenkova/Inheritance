@@ -10,6 +10,9 @@ public abstract class Task {
     public int getId() {
         return id;
     }
+    public boolean matches(String query) {
+        return false;
+    }
 
     // Ниже находятся вспомогательные методы для корректной работы equals
     // Переопределять их в наследниках не нужно
@@ -27,8 +30,6 @@ public abstract class Task {
         return Objects.hash(id);
 
     }
-    public boolean matches(String query) {
-        return false;
-    }
+
 
 }

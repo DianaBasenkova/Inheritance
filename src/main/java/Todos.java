@@ -30,5 +30,16 @@ public class Todos {
         return tasks;
     }
 
-}
+    public Task[] search(String query) {
+        Task[] result = new Task[0]; // массив для ответа
+        for (Task task : tasks) { // перебираем все задачи
+            if (task.matches(query)) { // если задача подходит под запрос
+                result = addToArray(result, task); // добавляем её в массив ответа
+            }
+        }
+        return result;
+    }
+    }
+
+
 
