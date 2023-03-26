@@ -10,6 +10,7 @@ public abstract class Task {
     public int getId() {
         return id;
     }
+
     public boolean matches(String query) {
         return false;
     }

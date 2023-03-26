@@ -10,6 +10,7 @@ public class Meeting extends Task {
         this.project = project;
         this.start = start;
     }
+
     public String getTopic() {
         return topic;
 

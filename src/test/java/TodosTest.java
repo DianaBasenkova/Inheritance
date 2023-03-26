@@ -33,8 +33,6 @@ public class TodosTest {
     public void shouldFindMatchesSimpleTask() {
         //тестируем поиск по запросу если совпадения найдены
         SimpleTask simpleTask = new SimpleTask(1, "Срочный звонок");
-        Todos todos = new Todos();
-        todos.add(simpleTask);
         boolean expected = true;
         boolean actual = simpleTask.matches("Срочный");
         Assertions.assertEquals(expected, actual);
@@ -44,8 +42,7 @@ public class TodosTest {
     @Test
     public void shouldNotFindMatchesSimpleTask() {
         SimpleTask simpleTask = new SimpleTask(1, "Плановая уборка");
-        Todos todos = new Todos();
-        todos.add(simpleTask);
+
         boolean expected = false;
         boolean actual = simpleTask.matches("Срочный");
         Assertions.assertEquals(expected, actual);
@@ -82,8 +79,7 @@ public class TodosTest {
     public void shouldFindMatchesMeeting() {
         //тестируем поиск по запросу если совпадения найдены
         Meeting meeting = new Meeting(3, "Срочный релиз", "Подключение к ЭДО", "Пн.12.00");
-        Todos todos = new Todos();
-        todos.add(meeting);
+
         boolean expected = true;
         boolean actual = meeting.matches("Срочный");
         Assertions.assertEquals(expected, actual);
@@ -149,16 +145,17 @@ public class TodosTest {
         Assertions.assertArrayEquals(expected, actual);
 
     }
+
     @Test
-    public void shouldFindIfTreeFromAll(){
+    public void shouldFindIfTreeFromAll() {
         SimpleTask simpleTask = new SimpleTask(1, "Протестировать приложение");
 
-        String[] subtasks = {"Приложение", "Сайт", "Реклама"};
+        String[] subtasks = {"приложение", "Сайт", "Реклама"};
         Epic epic = new Epic(2, subtasks);
         Meeting meeting = new Meeting(
                 3,
                 "Релиз версии 1.0",
-                "Приложение Java",
+                "приложение Java",
                 "Согласовать после тестирования"
         );
         Todos todos = new Todos();
@@ -167,12 +164,35 @@ public class TodosTest {
         todos.add(meeting);
 
         Task[] expected = {simpleTask, epic, meeting};
-        Task[] actual = todos.search("Приложение");
+        Task[] actual = todos.search("приложение");
         Assertions.assertArrayEquals(expected, actual);
 
     }
 
+    @Test
+    public void shouldFindIfVoidQueryFromAll() {
+        SimpleTask simpleTask = new SimpleTask(1, "Протестировать приложение");
+
+        String[] subtasks = {"приложение", "Сайт", "Реклама"};
+        Epic epic = new Epic(2, subtasks);
+        Meeting meeting = new Meeting(
+                3,
+                "Релиз версии 1.0",
+                "приложение Java",
+                "Согласовать после тестирования"
+        );
+        Todos todos = new Todos();
+        todos.add(simpleTask);
+        todos.add(epic);
+        todos.add(meeting);
+
+        Task[] expected = {};
+        Task[] actual = todos.search("null");
+        Assertions.assertArrayEquals(expected, actual);
+
     }
+}
+
 
 
 
